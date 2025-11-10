@@ -10,6 +10,16 @@ async function createUsuarioController(req, res) {
     }
 }
 
+async function findAllUsuariosController(req, res) {
+    try {
+    const usuarios = await usuarioService.findAllUsuariosService();
+    res.status(200).send({usuarios});
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+}
+
 export default {
-    createUsuarioController
+    createUsuarioController,
+    findAllUsuariosController   
 }

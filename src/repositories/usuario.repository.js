@@ -1,3 +1,4 @@
+import e from 'express';
 import db from '../config/database.js';
 
 db.run(`
@@ -28,7 +29,20 @@ function createUsuarioRepository(novoUsuario) {
     });
 }
 
+function findAllUsuariosRepository() {
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * FROM usuarios`, [], (err, rows) => {
+            if (err) {
+                return reject(err);
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+}
+
 export default {
-    createUsuarioRepository
+    createUsuarioRepository,
+    findAllUsuariosRepository
 };
 
